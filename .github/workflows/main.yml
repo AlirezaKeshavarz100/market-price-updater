@@ -10,6 +10,10 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
+    env:
+      DJANGO_API_URL: ${{ secrets.DJANGO_API_URL }}
+      WEBHOOK_TOKEN: ${{ secrets.WEBHOOK_TOKEN }}
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
