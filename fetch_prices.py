@@ -9,8 +9,6 @@ DJANGO_API_URL = os.environ["DJANGO_API_URL"]
 WEBHOOK_TOKEN = os.environ["WEBHOOK_TOKEN"]
 
 
-print("API URL:", DJANGO_API_URL)
-print("Token starts with:", WEBHOOK_TOKEN[:5] + "*****")
 
 
 AGRI_SYMBOLS = {
@@ -91,6 +89,30 @@ def fetch_all():
     }
 
     return output
+def send_to_django(data):
+    try:
+        response = requests.post(
+            DJANGO_API_URL,
+            json=data,
+            headers={
+                "X-GitHub-Token": WEBHOOK_TOKEN,
+                "Content-Type": "application/json"
+            },
+            timeout=30
+        )
+
+        print(f"\nHTTP Status: {response.status_code}")
+        print("Response:")
+        print(response.text)
+
+        # اگر وضعیت 200 نبود، GitHub Action را Fail کن
+        response.raise_for_status()
+
+        print("\nData successfully sent to Django.")
+
+    except requests.exceptions.RequestException as e:
+        print(f"\nERROR sending data: {e}")
+        raise
 
 
 if __name__ == "__main__":
@@ -98,3 +120,5 @@ if __name__ == "__main__":
 
     print("\nFINAL JSON:\n")
     print(json.dumps(data, indent=2))
+
+    send_to_django(data)
