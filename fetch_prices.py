@@ -6,7 +6,7 @@ import yfinance as yf
 from datetime import datetime
 
 DJANGO_API_URL = os.environ["DJANGO_API_URL"]
-WEBHOOK_TOKEN = os.environ["Harkiinopeydakone3barkoonie"]
+WEBHOOK_TOKEN = os.environ["WEBHOOK_TOKEN"]
 
 
 AGRI_SYMBOLS = {
