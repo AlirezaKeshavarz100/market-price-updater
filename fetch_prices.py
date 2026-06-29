@@ -1,6 +1,13 @@
-import yfinance as yf
+import os
 import json
+import requests
+import yfinance as yf
+
 from datetime import datetime
+
+DJANGO_API_URL = os.environ["DJANGO_API_URL"]
+WEBHOOK_TOKEN = os.environ["Harkiinopeydakone3barkoonie"]
+
 
 AGRI_SYMBOLS = {
     "Corn": "ZC=F",
