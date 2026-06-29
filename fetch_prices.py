@@ -9,6 +9,10 @@ DJANGO_API_URL = os.environ["DJANGO_API_URL"]
 WEBHOOK_TOKEN = os.environ["WEBHOOK_TOKEN"]
 
 
+print("API URL:", DJANGO_API_URL)
+print("Token starts with:", WEBHOOK_TOKEN[:5] + "*****")
+
+
 AGRI_SYMBOLS = {
     "Corn": "ZC=F",
     "Wheat": "ZW=F",
